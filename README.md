@@ -1,2 +1,3 @@
-# laracasts-php-for-beginners-2023
+# Laracasts: PHP For Beginners
+
 My files for PHP For Beginners from Laracasts
