@@ -1,17 +1,16 @@
 <?php
 
-// connect to the database, and execute a query.
 class Database
 {
     public $connection;
 
-    public function __construct()
+    public function __construct($config)
     {
-        $dsn = "mysql:host=127.0.0.1;port=3306;dbname=laracast;charset=utf8mb4";
-        $user = 'laracast';
-        $password = 'password';
+        $dsn = "mysql:" . http_build_query($config, '', ';');
 
-        $this->connection = new PDO($dsn, $user, $password);
+        $this->connection = new PDO($dsn, options: [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+        ]);
     }
     public function query($query)
     {
