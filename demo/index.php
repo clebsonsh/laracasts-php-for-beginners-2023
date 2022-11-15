@@ -1,21 +1,13 @@
 <?php
 
 require 'functions.php';
+require 'Database.php';
 // require 'router.php';
 
-// connect to our MySQL database.
-$dsn = "mysql:host=127.0.0.1;port=3306;dbname=laracast;charset=utf8mb4";
-$user = 'laracast';
-$password = 'password';
+$db = new Database();
 
-$pdo = new PDO($dsn, $user, $password);
-
-$statement = $pdo->prepare("select * from posts");
-
-$statement->execute();
-
-$posts = $statement->fetchAll(PDO::FETCH_CLASS);
+$posts = $db->query("select * from posts")->fetchAll(PDO::FETCH_OBJ);
 
 foreach ($posts as $post) {
-  echo '<li>' . $post->title . '</li>';
+    echo '<li>' . $post->title . '</li>';
 }
