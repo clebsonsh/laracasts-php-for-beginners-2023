@@ -30,16 +30,36 @@
       "purchaseUrl" => "http://example.com/book/3",
       "releaseYear" => 2021,
     ],
+    [
+      "name" => "The Martian",
+      "author" => "Andy Weir",
+      "purchaseUrl" => "http://example.com/book/4",
+      "releaseYear" => 2011,
+    ],
   ];
+
+  function filterByAuthor($books, $author)
+  {
+    $filteredBooks = [];
+
+    foreach ($books as $book) {
+      if ($book['author'] === $author) {
+        $filteredBooks[] = $book;
+      }
+    }
+
+    return $filteredBooks;
+  }
+
   ?>
 
   <ul>
-    <?php foreach ($books as $book) : ?>
+    <?php foreach (filterByAuthor($books, "Andy Weir") as $book) : ?>
       <li>
         <a href="<?= $book["purchaseUrl"] ?>">
-          <?= $book["name"] ?> <small><?= $book["releaseYear"] ?></small>
+          <?= $book["name"] ?>
         </a>
-        by <?= $book["author"] ?>
+        (<?= $book["releaseYear"] ?>) - by <?= $book["author"] ?>
       </li>
     <?php endforeach ?>
   </ul>
