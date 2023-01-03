@@ -20,6 +20,6 @@ function abort($code = Response::NOT_FOUND)
     die();
 }
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$uri = rtrim(parse_url($_SERVER['REQUEST_URI'])['path'], "/");
 
 routeToController($uri, $routes);
